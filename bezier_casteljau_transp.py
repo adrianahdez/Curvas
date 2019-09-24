@@ -32,14 +32,13 @@ yMax = 0
 yMin = 0
 
 for pt in P:
-    x = pt[:, 0]
-    y = pt[:, 1]
-    m = x.size
+    xValues = pt[:, 0]
+    yValues = pt[:, 1]
     # Coordinate system boundaries
-    currentXMax = max(x)
-    currentYMax = max(y)
-    currentXMin = min(x)
-    currentYMin = min(y)
+    currentXMax = max(xValues)
+    currentYMax = max(yValues)
+    currentXMin = min(xValues)
+    currentYMin = min(yValues)
 
     if currentXMax > xMax:
         xMax = currentXMax
@@ -53,14 +52,22 @@ for pt in P:
     if currentYMin < yMin:
         yMin = currentYMin
 
+    coordCount = xValues.size
+
     for t in np.linspace(0., 1., 25):
-        a = B(x, 0, m - 1, t)
-        b = B(y, 0, m - 1, t)
+        a = B(xValues, 0, coordCount - 1, t)
+        b = B(yValues, 0, coordCount - 1, t)
         xb.append(a)
         yb.append(b)
     plt.plot(xb, yb, 'go', ms=2)
 
-    plt.plot(x, y, 'r-', x, y, 'ko', ms=6)
+    plt.plot(xValues, yValues, 'r-', xValues, yValues, 'ko', ms=6)
+
+# Uncomment this to hide X and Y axis
+# plt.xticks([])
+# plt.yticks([])
+# plt.axis('off')
+# -----------------------------------
 
 plt.axis([xMin - 0.065, xMax + .5, yMin - 0.05, yMax + 0.5])
 
