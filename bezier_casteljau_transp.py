@@ -8,6 +8,7 @@ def B(coorArr, i, j, t):
         return coorArr[i]
     return B(coorArr, i, j - 1, t) * (1 - t) + B(coorArr, i + 1, j - 1, t) * t
 
+
 P = np.array([np.array([[2.5, 10.], [4., 12.], [6., 12.]]),
               np.array([[6., 12.], [8., 12.], [9., 10.]]),
               np.array([[9., 10.], [10., 8.], [10., 6.]]),
